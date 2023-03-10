@@ -1,17 +1,5 @@
-<?php
-
-define('ROOT_URL', 'http://localhost/activity/');
-define('DB_HOST','localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'task');
-
-$conn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-
-if(mysqli_connect_errno())
-echo "shesh moments";
-
-else echo "ok";
+<?php 
+require "db.php";
 
 
 $query = 'SELECT * FROM task';
@@ -27,40 +15,41 @@ $query = 'SELECT * FROM task';
 
 <html>
 
-<body>
-<table class="table table-hover">
-                                        <thead>
+<body><div style = "position:relative; left:470px; top:-2px;"><a class="nav-link" href="add.php">
+                                        <button type ="submit" class ="btn btn-info btn-fill pull-right">add</button>
+ </a> </div>
+ 
+<table class="table table-hover" cellspacing="2" bgcolor="#000000">
+                                        <thead  bgcolor="#ffffff">
                                             <th>id</th>
                                             <th>task name</th>
                                             <th>task decription</th>
                                             <th>task due date</th>
                                             <th>status</th>
                                             <th>action</th>
-                                            <th>  <a class="nav-link" href="add.php">
-                                        <button type ="submit" class ="btn btn-info btn-fill pull-right">add</button>
- </a>  </th>
+                                           
                                         
                                             
 
                                         </thead>
-                                        <tbody>
+                                        <tbody  bgcolor="#ffffff">
 
                                             <?php foreach($tasks as $tsk): ?>
                                             <tr>
-                                                <td><?php echo $tsk['idtask'];?></td>
-                                                <td><?php echo $tsk['idtask'];?></td>
+                                                <td><?php echo $tsk['id'];?></td>
+                                                <td><?php echo $tsk['task_name'];?></td>
                                                 <td><?php echo $tsk['task_description'];?></td>
-                                                <td><?php echo $tsk['task_due'];?></td>
+                                                <td><?php echo $tsk['task_due_date'];?></td>
                                                 <td><?php echo $tsk['task_status'];?></td>
                                                 <td>
-
-                                                        <button type= "submit" class="btn btn-warning btn-fill pull-right">delete</button>
+                                                <a href="delete.php?id= <?php echo $tsk['id'];   ?>">
+                                                        <button type= "submit" class="btn btn-warning btn-fill pull-right" name = "delete" >delete
+                                                       
+                                                        </button>
+                                                        <a href="edit.php?id= <?php echo $tsk['id'];   ?>">
+                                                        <button type= "submit" class="btn btn-warning btn-fill pull-right">edit</button>
                                                        
                                                 </td>
-
-                                                <td> <a href="Recordapp.php?id= <?php echo $tsk['idtask'];   ?>">
-                                                        <button type= "submit" class="btn btn-warning btn-fill pull-right">edit</button></td>
-                                              
 
 
                                             </tr>

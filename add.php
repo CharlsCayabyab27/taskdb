@@ -1,7 +1,25 @@
 <?php
+include "db.php";
+ if(isset($_POST['submit'])){
+    $task_name = mysqli_real_escape_string($conn, $_POST['task_name']);
+    $task_description = mysqli_real_escape_string($conn, $_POST['task_description']);
+    $task_due_date = mysqli_real_escape_string($conn, $_POST['task_due_date']);
+    $task_status = mysqli_real_escape_string($conn, $_POST['task_status']);
 
-echo "test";
+    $query = "INSERT INTO `taskss`.`task` ( `task_name`, `task_description`, `task_due_date`, `task_status`) VALUES ( '$task_name', '$task_description', '$task_due_date', '$task_status');";
 
+   
+ if (mysqli_query($conn,$query)) {
+    # code...
+    
+}
+else{
+
+    echo 'ERROR: '.mysqli_error($conn);
+}
+ }
+echo "$task_name  $task_description  $task_due_date  $task_status";
+ 
 ?>
 
 <html>
@@ -13,47 +31,35 @@ echo "test";
                                            
                                             <div class="col-md-4 pl-12">
                                                 <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <input type="text" class="form-control" name="lastname" value="<?php echo $lastname;  ?>">
+                                                    <label>name</label>
+                                                    <input type="text" class="form-control" name="task_name" value=" ">
                                                 </div>
                                             </div>
                                        
                                             <div class="col-md-4 pl-12">
                                                 <div class="form-group">
                                                     
-                                                    <label>First Name</label>
-                                                    <input type="text" class="form-control" name="firstname" value="<?php echo $firstname;  ?>">
+                                                    <label>description</label>
+                                                    <input type="text" class="form-control" name="task_description" value=" ">
                                                 </div>
                                             </div>
+
+                                            <div>
+					                                <label>due date:</label>
+					                                <input type="date" name="task_due_date">
+			                                    	</div>
 
                                             <div class="col-md-4 pl-1">
                                                 <div class="form-group">
-                                                <select class="form-control" name = "office">
-                                                    <option>select....</option>
-                                                    <?php  
-                                                    $query = "SELECT id, name FROM office";
-                                                    $result = mysqli_query($conn, $query);
-                                                    while ($row = mysqli_fetch_array($result)) {
-                                                        if ($row['id']==$office_id) {
-                                                            echo "<option value=" .$row['id']."selected>". $row['name'].'</option>'; # code...
-                                                        }else {
-                                                            echo "<option value=" .$row['id'].">". $row['name'].'</option>';    # code...
-                                                        }
-                                                        
-                                                        # code...
-                                                    }
-
-                                                    ?> 
+                                                <select class="form-control" name = "task_status">
+                                                    <option value="incomplete">incomplete</option>
+				                                	<option value="in progress">in progress</option>
+				                                	<option value="complete">Complete</option>
+                                                    
                                                     </select>               
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                            <div class="col-md-12 >
-                                                <div class="form-group">
-                                                    <label>Address / Building</label>
-                                                    <input type="text" class="form-control" name = "address" value="<?php echo $address;  ?>">
-                                                </div>
-                                            </div>
+                                            
                                            
                                         </div>
                                             
