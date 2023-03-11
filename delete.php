@@ -11,4 +11,13 @@ $id = $_GET['id'];
     $del = "DELETE FROM `taskss`.`task` WHERE (`id` = '$id')";
 
     if (mysqli_query($conn,$del)) {}
+
+
 ?>
+
+<html>
+
+    <a href="index.php">
+Deleted!
+    </a>
+</html>
