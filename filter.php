@@ -1,7 +1,19 @@
+<?php
 <form action="filter.php" method="get">
-    <label for="start_date">Start Date:</label>
-    <input type="date" name="start_date" id="start_date">
-    <label for="end_date">End Date:</label>
-    <input type="date" name="end_date" id="end_date">
-    <input type="submit" value="Filter">
+  <label for="status-filter">Filter by status:</label>
+  <select name="status" id="status-filter">
+    <option value="all">All</option>
+    <option value="active">Active</option>
+    <option value="inactive">Inactive</option>
+  </select>
+  <button type="submit">Filter</button>
 </form>
+$status = $_GET['status'];
+if ($status == 'active') {
+  $filteredData = // code to filter active data
+} else if ($status == 'inactive') {
+  $filteredData = 
+} else {
+  $filteredData = // code to show all data
+}
+?>
